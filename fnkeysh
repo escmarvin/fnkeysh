@@ -1,0 +1,20 @@
+#!/bin/sh
+NAME="<Custom name>"
+
+#Custom targets
+F1() {
+    cat /dev/null 
+}
+
+#Stock targets
+name() {
+    echo "$NAME"
+}
+
+hook() { 
+    SHPATH=$( cd "$(dirname "$0")" ; pwd -P )/"$(basename "$0")" #ABSPath to this script
+    FNPATH=$HOME/.fnkeys #Path to the active fnkey-script
+    ln -sf $SHPATH $FNPATH
+}
+
+$1
