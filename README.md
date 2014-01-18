@@ -4,7 +4,7 @@ A skeleton bash-file, intended to be used to write project specific shell-subrou
 
 
 ## Usage
-Copy the skeleton bash-file into the root of your project folder, replace the NAME variable as wanted and extend the script by adding functions named after the key they should be binded to at the top, like so:
+Copy the skeleton bash-file into the root of your project folder, replace the NAME variable as wanted and extend the script by adding functions named after the key they should be binded to in the _Custom target_ section, like so:
 
 ```sh
 F1() {
