@@ -1,20 +1,26 @@
 #!/bin/sh
-NAME="<Custom name>"
-
-#Custom targets
-F1() {
-    cat /dev/null 
-}
-
-#Stock targets
 name() {
     echo "$NAME"
 }
 
 hook() { 
-    SHPATH=$( cd "$(dirname "$0")" ; pwd -P )/"$(basename "$0")" #ABSPath to this script
-    FNPATH=$HOME/.fnkeys #Path to the active fnkey-script
-    ln -sf $SHPATH $FNPATH
+    args=("$@")
+    SCR=${args[1]}
+    if [ -f $SCR ] || [ ! -d $SCR ]; then
+        SCRPATH=$( cd "$(dirname "$SCR")" ; pwd -P )/"$(basename "$SCR")" #ABS
+        ln -sf $SCRPATH "$HOME/.fnkeyscr"
+        exit
+    fi
+    echo "usage: fnkeysh hook <file>"
 }
+
+if [ -f ~/.fnkeyscr ]; then
+    if [[ -z "$1" ]]; then
+        readlink "$HOME/.fnkeyscr" 
+        exit 0
+    fi
+
+    . "$HOME/.fnkeyscr"
+fi
 
 $1
