@@ -20,6 +20,8 @@ if [ -f ~/.fnkeyscr ]; then
         exit 0
     fi
 
+    scrd=$(readlink "$HOME/.fnkeyscr") #ABS to parent of script
+    cd "$(dirname "$scrd")"
     . "$HOME/.fnkeyscr"
 fi
 
